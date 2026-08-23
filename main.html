@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For Isha ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0610;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 77, 136, 0.18), transparent 30%),
+                radial-gradient(circle at 80% 30%, rgba(180, 70, 255, 0.15), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 102, 0.12), transparent 35%),
+                #0d0610;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -5;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            color: #ff5c93;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatHeart linear forwards;
+            z-index: 20;
+            text-shadow: 0 0 15px rgba(255, 92, 147, 0.8);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .small-text {
+            color: #ff9fbd;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 9vw, 90px);
+            line-height: 1.05;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: clamp(32px, 6vw, 60px);
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #e8dce7;
+        }
+
+        .pink {
+            color: #ff6f9f;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #ff6f9f,
+                #ffb3cb,
+                #c88cff,
+                #ff6f9f
+            );
+            background-size: 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 5s infinite linear;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            flex-direction: column;
+        }
+
+        .hero-heart {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: 20px auto 45px;
+            animation: heartbeat 1.4s infinite;
+        }
+
+        .hero-heart::before,
+        .hero-heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 90px;
+            height: 140px;
+            background: linear-gradient(135deg, #ff477e, #ff0f5d);
+            border-radius: 90px 90px 0 0;
+        }
+
+        .hero-heart::before {
+            left: 75px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .hero-heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(255, 50, 100, 0.5));
+            }
+
+            50% {
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 35px rgba(255, 50, 100, 0.9));
+            }
+        }
+
+        .hero-subtitle {
+            max-width: 600px;
+            margin: 25px auto;
+        }
+
+        .scroll-btn {
+            margin-top: 40px;
+            border: 1px solid rgba(255, 150, 180, 0.5);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            padding: 14px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .scroll-btn:hover {
+            background: rgba(255, 100, 150, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           LOVE STORY
+        ========================= */
+
+        .story-card {
+            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(18px);
+            border-radius: 30px;
+            padding: 50px 35px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+        }
+
+        .story-card p {
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            font-size: 25px;
+            color: #ff9fbd;
+            font-style: italic;
+            margin: 35px 0;
+        }
+
+        /* =========================
+           REASONS
+        ========================= */
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .reason {
+            padding: 30px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.4s;
+        }
+
+        .reason:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 90, 140, 0.08);
+        }
+
+        .reason-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .reason h3 {
+            margin-bottom: 10px;
+            color: #ffb0c8;
+        }
+
+        .reason p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           LETTER
+        ========================= */
+
+        .letter {
+            background: #fff9fb;
+            color: #391522;
+            padding: 50px 40px;
+            border-radius: 8px;
+            transform: rotate(-1deg);
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.4),
+                inset 0 0 50px rgba(255, 100, 150, 0.05);
+            position: relative;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .letter::before {
+            content: "♥";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #ff638f;
+            font-size: 25px;
+        }
+
+        .letter h3 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .letter p {
+            color: #5d3642;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            text-align: left;
+            line-height: 2;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: cursive;
+            font-size: 25px;
+            color: #d83b69;
+        }
+
+        /* =========================
+           PROPOSAL
+        ========================= */
+
+        #proposal {
+            overflow: hidden;
+        }
+
+        .proposal-box {
+            max-width: 800px;
+        }
+
+        .proposal-heart {
+            font-size: 90px;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .proposal-text {
+            max-width: 650px;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        .buttons {
+            margin-top: 45px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 17px 35px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #ff4f83, #ff1660);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 50, 100, 0.3);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 50, 100, 0.5);
+        }
+
+        .no-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            position: relative;
+        }
+
+        /* =========================
+           FINAL SCREEN
+        ========================= */
+
+        #success {
+            display: none;
+            flex-direction: column;
+            text-align: center;
+            background:
+                radial-gradient(circle at center, rgba(255, 55, 110, 0.25), transparent 45%),
+                #0d0610;
+        }
+
+        .success-heart {
+            font-size: 110px;
+            animation: successHeart 1s infinite alternate;
+        }
+
+        @keyframes successHeart {
+            from {
+                transform: scale(1) rotate(-5deg);
+            }
+
+            to {
+                transform: scale(1.2) rotate(5deg);
+            }
+        }
+
+        .success-message {
+            max-width: 700px;
+            margin: 25px auto;
+        }
+
+        .forever {
+            font-size: 25px;
+            color: #ff9fbd;
+            margin-top: 30px;
+        }
+
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        .music-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(20,10,20,0.7);
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 20px;
+        }
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #ff477e, #c77dff);
+            z-index: 200;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            section {
+                padding: 35px 18px;
+            }
+
+            .story-card {
+                padding: 35px 22px;
+            }
+
+            .reasons {
+                grid-template-columns: 1fr;
+            }
+
+            .letter {
+                padding: 35px 25px;
+            }
+
+            .letter p {
+                font-size: 16px;
+            }
+
+            .proposal-text {
+                font-size: 18px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="stars" id="stars"></div>
+
+    <div class="progress" id="progress"></div>
+
+    <!-- Music button -->
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+        🎵
+    </button>
+
+    <!-- Hidden audio.
+         Replace "song.mp3" with your own romantic song. -->
+    <audio id="music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section id="home">
+
+        <div class="container hero">
+
+            <div class="small-text">
+                A little something for you...
+            </div>
+
+            <div class="hero-heart"></div>
+
+            <h1>
+                Hey <span class="gradient-text">Isha</span> ❤️
+            </h1>
+
+            <p class="hero-subtitle">
+                I could have just sent you a message...
+                <br>
+                But you deserve something a little more special.
+            </p>
+
+            <button class="scroll-btn"
+                    onclick="scrollToSection('story')">
+                I made this for you ↓
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORY
+    ========================== -->
+
+    <section id="story">
+
+        <div class="container">
+
+            <div class="small-text">
+                Before I say it...
+            </div>
+
+            <h2>
+                There is something<br>
+                <span class="gradient-text">I want you to know.</span>
+            </h2>
+
+            <div class="story-card">
+
+                <p>
+                    I don't know exactly when it happened.
+                </p>
+
+                <p>
+                    Maybe it was one conversation.
+                    Maybe it was one smile.
+                    Maybe it was all those little moments
+                    that I didn't realize were becoming
+                    important to me.
+                </p>
+
+                <div class="quote">
+                    "Some people quietly become
+                    your favorite part of life."
+                </div>
+
+                <p>
+                    And somehow...
+                    you became that person for me.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REASONS
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="small-text">
+                Why you?
+            </div>
+
+            <h2>
+                I could give you<br>
+                <span class="gradient-text">a thousand reasons.</span>
+            </h2>
+
+            <div class="reasons">
+
+                <div class="reason">
+                    <div class="reason-icon">😊</div>
+                    <h3>Your Smile</h3>
+                    <p>
+                        Somehow it manages to make
+                        ordinary moments feel special.
+                    </p>
+                </div>
+
+                <div class="reason">
+                    <div class="reason-icon">✨</div>
+                    <h3>Your Presence</h3>
+                    <p>
+                        Even doing absolutely nothing
+                        feels better when you're around.
+                    </p>
+                </div>
+
+                <div class="reason">
+                    <div class="reason-icon">❤️</div>
+                    <h3>You</h3>
+                    <p>
+                        Not because you're perfect.
+                        Because you're simply you.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOVE LETTER
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="small-text">
+                A letter for you
+            </div>
+
+            <div class="letter">
+
+                <h3>Dear Isha,</h3>
+
+                <p>
+                    I've spent quite a lot of time thinking
+                    about how to say this.
+                </p>
+
+                <p>
+                    I could write a hundred paragraphs,
+                    find the perfect words and still feel
+                    like something is missing.
+                </p>
+
+                <p>
+                    So I'll keep it simple.
+                </p>
+
+                <p>
+                    I really, really like you.
+                    More than I probably know how to explain.
+                </p>
+
+                <p>
+                    And today, I don't want to hide it
+                    behind jokes, hints or silence.
+                </p>
+
+                <p>
+                    I just want you to know what my heart
+                    has been trying to tell you.
+                </p>
+
+                <div class="signature">
+                    — Someone who really cares about you ❤️
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ALMOST THERE
+    ========================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="small-text">
+                Okay...
+            </div>
+
+            <h2>
+                Enough hiding<br>
+                <span class="gradient-text">behind these words.</span>
+            </h2>
+
+            <p style="max-width:600px;margin:auto;">
+                So here I am...
+                probably nervous,
+                probably overthinking,
+                but finally saying what
+                I've wanted to say.
+            </p>
+
+            <button class="scroll-btn"
+                    onclick="scrollToSection('proposal')">
+                One last thing... ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROPOSAL
+    ========================== -->
+
+    <section id="proposal">
+
+        <div class="container proposal-box">
+
+            <div class="proposal-heart">
+                ❤️
+            </div>
+
+            <div class="small-text">
+                Isha...
+            </div>
+
+            <h2>
+                Will you be<br>
+                <span class="gradient-text">my special person?</span>
+            </h2>
+
+            <p class="proposal-text">
+                I don't promise that every day will be perfect.
+                <br><br>
+                But I promise that if you let me,
+                I'll always try to make you smile,
+                listen to you,
+                stand beside you,
+                and make the little moments matter.
+                <br><br>
+                So...
+            </p>
+
+            <div class="buttons">
+
+                <button class="btn yes-btn"
+                        onclick="sayYes()">
+                    Yes, I will ❤️
+                </button>
+
+                <button class="btn no-btn"
+                        id="noBtn"
+                        onmouseover="moveNoButton()"
+                        onclick="moveNoButton()">
+                    Let me think 😌
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUCCESS
+    ========================== -->
+
+    <section id="success">
+
+        <div class="container">
+
+            <div class="success-heart">
+                ❤️
+            </div>
+
+            <div class="small-text">
+                You just made my day...
+            </div>
+
+            <h1>
+                I knew you were<br>
+                <span class="gradient-text">special, Isha.</span>
+            </h1>
+
+            <p class="success-message">
+
+                I don't know where this journey takes us...
+
+                <br><br>
+
+                But I know one thing.
+
+                <br><br>
+
+                I'm really happy that
+                it's a journey with you. ❤️
+
+            </p>
+
+            <div class="forever">
+                Here's to us. 🥂❤️
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        /* =========================
+           CREATE STARS
+        ========================== */
+
+        const starsContainer = document.getElementById("stars");
+
+        for (let i = 0; i < 100; i++) {
+
+            const star = document.createElement("div");
+
+            star.className = "star";
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            star.style.animationDuration =
+                2 + Math.random() * 4 + "s";
+
+            starsContainer.appendChild(star);
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================== */
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+
+            const hearts = [
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "💓",
+                "💘"
+            ];
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                14 + Math.random() * 25 + "px";
+
+            const duration =
+                5 + Math.random() * 6;
+
+            heart.style.animationDuration =
+                duration + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 700);
+
+
+        /* =========================
+           SMOOTH SCROLL
+        ========================== */
+
+        function scrollToSection(id) {
+
+            document
+                .getElementById(id)
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        /* =========================
+           PROGRESS BAR
+        ========================== */
+
+        window.addEventListener("scroll", () => {
+
+            const scrollTop =
+                window.scrollY;
+
+            const height =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+            const progress =
+                (scrollTop / height) * 100;
+
+            document.getElementById("progress")
+                .style.width = progress + "%";
+        });
+
+
+        /* =========================
+           MUSIC
+        ========================== */
+
+        let musicPlaying = false;
+
+        function toggleMusic() {
+
+            const music =
+                document.getElementById("music");
+
+            const button =
+                document.getElementById("musicBtn");
+
+            if (!musicPlaying) {
+
+                music.play()
+                    .then(() => {
+
+                        musicPlaying = true;
+                        button.innerHTML = "🔊";
+
+                    })
+                    .catch(() => {
+
+                        alert(
+                            "Add a file named song.mp3 next to index.html first ❤️"
+                        );
+
+                    });
+
+            } else {
+
+                music.pause();
+
+                musicPlaying = false;
+
+                button.innerHTML = "🎵";
+            }
+        }
+
+
+        /* =========================
+           MOVING NO BUTTON
+        ========================== */
+
+        function moveNoButton() {
+
+            const button =
+                document.getElementById("noBtn");
+
+            const maxX =
+                Math.min(
+                    window.innerWidth - 250,
+                    300
+                );
+
+            const maxY =
+                Math.min(
+                    window.innerHeight - 150,
+                    200
+                );
+
+            const x =
+                (Math.random() * maxX) -
+                (maxX / 2);
+
+            const y =
+                (Math.random() * maxY) -
+                (maxY / 2);
+
+            button.style.transform =
+                `translate(${x}px, ${y}px)`;
+        }
+
+
+        /* =========================
+           YES BUTTON
+        ========================== */
+
+        function sayYes() {
+
+            const proposal =
+                document.getElementById("proposal");
+
+            const success =
+                document.getElementById("success");
+
+            proposal.style.display = "none";
+
+            success.style.display = "flex";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            celebrate();
+
+            // Try starting music after interaction
+            const music =
+                document.getElementById("music");
+
+            music.play()
+                .then(() => {
+
+                    musicPlaying = true;
+
+                    document.getElementById("musicBtn")
+                        .innerHTML = "🔊";
+
+                })
+                .catch(() => {});
+        }
+
+
+        /* =========================
+           CELEBRATION
+        ========================== */
+
+        function celebrate() {
+
+            const emojis = [
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "✨",
+                "🌸",
+                "💘",
+                "🥰"
+            ];
+
+            for (let i = 0; i < 80; i++) {
+
+                setTimeout(() => {
+
+                    const element =
+                        document.createElement("div");
+
+                    element.className = "heart";
+
+                    element.innerHTML =
+                        emojis[
+                            Math.floor(
+                                Math.random() *
+                                emojis.length
+                            )
+                        ];
+
+                    element.style.left =
+                        Math.random() * 100 + "vw";
+
+                    element.style.fontSize =
+                        15 + Math.random() * 35 + "px";
+
+                    element.style.animationDuration =
+                        3 + Math.random() * 4 + "s";
+
+                    document.body.appendChild(element);
+
+                    setTimeout(() => {
+                        element.remove();
+                    }, 7000);
+
+                }, i * 50);
+            }
+        }
+
+
+        /* =========================
+           INITIAL HEART BURST
+        ========================== */
+
+        setTimeout(() => {
+
+            for (let i = 0; i < 12; i++) {
+
+                setTimeout(createHeart, i * 150);
+
+            }
+
+        }, 1000);
+
+    </script>
+
+</body>
+</html>
