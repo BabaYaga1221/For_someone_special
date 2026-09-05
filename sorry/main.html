@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry 🤍</title>
+<meta name="description" content="A little apology from someone who knows he made a mistake.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#08131a;
+  --bg2:#10232b;
+  --text:#f2f7f6;
+  --muted:#a9bdc0;
+  --accent:#78d6c9;
+  --accent2:#8eb8d8;
+  --glass:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(120,214,201,.13),transparent 30%),
+    radial-gradient(circle at 85% 75%,rgba(142,184,216,.12),transparent 32%),
+    linear-gradient(135deg,#071218 0%,#0c1c24 48%,#07131a 100%);
+
+  overflow-x:hidden;
+}
+button{font:inherit}
+#progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:9999}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+#particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.aurora{position:fixed;width:42vw;height:42vw;border-radius:50%;filter:blur(75px);opacity:.12;pointer-events:none;z-index:0}
+.aurora-one{left:-15vw;top:18vh;background:#78d6c9;animation:drift 13s ease-in-out infinite alternate}
+.aurora-two{right:-15vw;bottom:5vh;background:#8eb8d8;animation:drift 17s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(7vw,-5vh) scale(1.2)}}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.32;background-image:radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 1.5px);background-size:95px 95px;animation:starMove 30s linear infinite}
+@keyframes starMove{to{transform:translate(-95px,-95px)}}
+.particle{position:absolute;bottom:-30px;opacity:0;animation:floatUp linear forwards}
+@keyframes floatUp{0%{transform:translateY(0) scale(.6) rotate(0);opacity:0}15%{opacity:.45}85%{opacity:.22}100%{transform:translateY(-110vh) scale(1.2) rotate(360deg);opacity:0}}
+.music{
+  position:fixed;right:20px;top:20px;z-index:100;
+  width:46px;height:46px;border:1px solid var(--border);border-radius:50%;
+  background:rgba(20,15,25,.72);color:white;backdrop-filter:blur(14px);cursor:pointer;
+  transition:.3s;
+}
+.music:hover{transform:scale(1.08);border-color:var(--accent)}
+main{position:relative;z-index:1}
+section{
+  min-height:100vh;padding:90px 22px;
+  display:flex;align-items:center;justify-content:center;
+}
+.container{width:min(900px,100%);text-align:center}
+.eyebrow{
+  color:var(--accent);letter-spacing:3px;text-transform:uppercase;font-size:.72rem;font-weight:700;
+  margin-bottom:20px;
+}
+h1,h2{line-height:1.08}
+h1{font-size:clamp(3.3rem,10vw,7rem);letter-spacing:-4px}
+h2{font-size:clamp(2rem,6vw,4.2rem);letter-spacing:-2px}
+p{color:var(--muted);line-height:1.85}
+.hero p{max-width:590px;margin:25px auto 35px;font-size:1.05rem}
+.cursive{font-family:Caveat,cursive}
+.accent{color:var(--accent)}
+.btn{
+  border:0;cursor:pointer;border-radius:999px;padding:15px 25px;
+  color:#181119;background:#fff;font-weight:700;
+  box-shadow:0 10px 35px rgba(255,143,168,.12);transition:.3s;
+}
+.btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 15px 45px rgba(255,143,168,.22)}
+.btn.ghost{background:var(--glass);color:#fff;border:1px solid var(--border);box-shadow:none}
+.scroll{margin-top:55px;color:#817783;font-size:.75rem;letter-spacing:2px}
+.scroll span{display:block;margin-top:10px;animation:bob 1.5s infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+
+.reveal{opacity:0;transform:translateY(45px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:none}
+
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+.card{
+  text-align:left;padding:28px;border-radius:25px;background:var(--glass);
+  border:1px solid var(--border);backdrop-filter:blur(18px);
+  transition:.45s;cursor:pointer;min-height:190px;
+}
+.card:hover{transform:translateY(-10px) rotateX(2deg);border-color:rgba(255,143,168,.4)}
+.card .icon{font-size:2rem;margin-bottom:22px}
+.card h3{margin-bottom:9px}
+.card p{font-size:.9rem}
+.card .secret{display:none;color:#fff;margin-top:15px;font-size:.9rem}
+.card.open .secret{display:block;animation:fade .5s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.divider{width:70px;height:1px;background:var(--accent);opacity:.5;margin:35px auto}
+
+.letter-wrap{perspective:1200px;margin:40px auto 0;max-width:700px}
+.envelope{
+  position:relative;height:300px;border-radius:20px;background:linear-gradient(145deg,#4b2537,#261827);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 80px rgba(0,0,0,.35);
+  cursor:pointer;overflow:hidden;transition:.7s;
+}
+.envelope:before,.envelope:after{content:"";position:absolute;inset:0;background:#6b334b}
+.envelope:before{clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);background:#7a3b54}
+.envelope:after{clip-path:polygon(0 0,50% 48%,100% 0,100% 10%,50% 60%,0 10%);background:#9b526c}
+.seal{position:absolute;z-index:4;left:50%;top:54%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:#f4c1cc;color:#5a273a;display:grid;place-items:center;font-size:1.6rem;box-shadow:0 8px 30px rgba(0,0,0,.25);transition:.5s}
+.letter{
+  position:absolute;z-index:5;left:6%;right:6%;top:15px;min-height:270px;
+  background:#fffaf7;color:#32272c;border-radius:8px;padding:30px;text-align:left;
+  transform:translateY(220px);transition:1s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 15px 40px rgba(0,0,0,.25);overflow:auto;
+}
+.envelope.open .letter{transform:translateY(0)}
+.envelope.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.5)}
+.envelope.open{height:470px}
+.letter h3{font-family:Caveat,cursive;font-size:2rem;color:#6d3549;margin-bottom:10px}
+.letter p{color:#554a4e;line-height:1.8;font-size:.95rem}
+.letter .sign{font-family:Caveat,cursive;font-size:1.6rem;color:#6d3549;margin-top:15px}
+
+.choice-box{
+  margin:42px auto 0;max-width:720px;padding:32px;border-radius:28px;
+  background:rgba(255,255,255,.055);border:1px solid var(--border);
+}
+.choices{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:25px}
+.choice{background:transparent;color:#fff;border:1px solid var(--border);padding:13px 19px;border-radius:999px;cursor:pointer;transition:.3s}
+.choice:hover{background:rgba(255,143,168,.12);border-color:var(--accent);transform:translateY(-3px)}
+#response{min-height:32px;margin-top:24px;color:#ffd6df;font-weight:600}
+
+.light-area{height:330px;display:grid;place-items:center;margin-top:20px;position:relative;cursor:pointer}
+.halo{position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(120,214,201,.09);box-shadow:0 0 100px rgba(120,214,201,.15);animation:breathe 3s ease-in-out infinite}
+.light-orb{position:relative;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#e9fffb;background:rgba(120,214,201,.11);border:1px solid rgba(120,214,201,.45);box-shadow:0 0 45px rgba(120,214,201,.22);transition:.5s}
+.light-orb:hover{transform:scale(1.12);box-shadow:0 0 80px rgba(120,214,201,.4)}
+@keyframes breathe{50%{transform:scale(1.18);opacity:.7}}
+.light-orb.fixed{animation:shine 1.1s ease}
+@keyframes shine{0%{transform:scale(1)}35%{transform:scale(1.45);box-shadow:0 0 120px rgba(120,214,201,.65)}100%{transform:scale(1)}}
+.hidden{display:none!important}
+
+.final{background:radial-gradient(circle at 50% 40%,rgba(255,143,168,.12),transparent 45%)}
+.final h2{max-width:800px;margin:auto}
+.final p{max-width:600px;margin:25px auto}
+.signature{font-family:Caveat,cursive;font-size:2rem;color:var(--accent);margin-top:25px}
+footer{padding:30px;text-align:center;color:#665c66;font-size:.75rem;position:relative;z-index:2}
+
+@media(max-width:700px){
+  section{padding:75px 18px}
+  h1{letter-spacing:-2px}
+  .card-grid{grid-template-columns:1fr}
+  .card{min-height:auto}
+  .envelope{height:270px}
+  .envelope.open{height:520px}
+  .letter{padding:23px}
+  .music{right:14px;top:14px}
+}
+
+/* Final playful forgiveness interaction */
+.final-choice{margin-top:42px;position:relative;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible}
+.final-please{font-family:'Caveat',cursive;font-size:clamp(1.7rem,4vw,2.5rem);color:#c9eeea;min-height:48px;transition:.3s}
+.final-buttons{position:relative;width:min(700px,100%);height:90px;display:flex;align-items:center;justify-content:center;gap:18px}
+.final-btn{border:1px solid var(--border);padding:14px 24px;border-radius:999px;cursor:pointer;color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);transition:transform .25s ease,box-shadow .25s ease}
+.final-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.final-btn.yes{background:linear-gradient(135deg,rgba(120,214,201,.25),rgba(142,184,216,.18))}
+.final-btn.no{z-index:4}
+.final-btn.no.shake{animation:angryShake .45s ease}
+@keyframes angryShake{0%,100%{transform:translate(0,0) rotate(0)}20%{transform:translate(-13px,0) rotate(-5deg)}40%{transform:translate(13px,0) rotate(5deg)}60%{transform:translate(-8px,0) rotate(-3deg)}80%{transform:translate(8px,0) rotate(3deg)}}
+.final-response{min-height:42px;font-family:'Caveat',cursive;font-size:1.5rem;color:#d8e8e8}
+.final-success{display:none;margin-top:20px;animation:successPop .7s cubic-bezier(.2,.8,.2,1)}
+.final-success.show{display:block}
+@keyframes successPop{from{opacity:0;transform:scale(.85) translateY(15px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@media(max-width:600px){.final-buttons{gap:10px}.final-btn{padding:12px 16px;font-size:.9rem}}
+
+
+/* Music player */
+.music{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:9999;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(120,214,201,.38);
+  background:rgba(8,19,26,.78);
+  color:#c9eeea;
+  backdrop-filter:blur(12px);
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  cursor:pointer;
+  font-size:1.35rem;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.music:hover{
+  transform:scale(1.08);
+  box-shadow:0 12px 35px rgba(120,214,201,.2);
+}
+.music.playing{
+  animation:musicPulse 1.2s ease-in-out infinite;
+}
+@keyframes musicPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+}
+@media(max-width:600px){
+  .music{right:15px;bottom:15px;width:48px;height:48px}
+}
+
+/* First-interaction music overlay */
+.music-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(4,11,16,.82);
+  backdrop-filter:blur(14px);
+  opacity:1;
+  visibility:visible;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+.music-overlay.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.music-card{
+  width:min(470px,100%);
+  padding:38px 28px;
+  text-align:center;
+  border:1px solid rgba(120,214,201,.24);
+  border-radius:28px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(120,214,201,.035));
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+  transform:translateY(0) scale(1);
+  transition:transform .6s ease;
+}
+.music-overlay.hidden .music-card{
+  transform:translateY(15px) scale(.96);
+}
+.music-note{
+  font-size:3.2rem;
+  margin-bottom:10px;
+  animation:noteFloat 2s ease-in-out infinite;
+}
+@keyframes noteFloat{
+  0%,100%{transform:translateY(0) rotate(-4deg)}
+  50%{transform:translateY(-8px) rotate(4deg)}
+}
+.music-card h3{
+  margin:8px 0;
+  font-family:'Caveat',cursive;
+  font-size:2.35rem;
+  color:#f2f7f6;
+}
+.music-card p{
+  color:#a9bdc0;
+  margin:0 auto 22px;
+  line-height:1.7;
+}
+.start-music{
+  border:1px solid rgba(120,214,201,.35);
+  border-radius:999px;
+  padding:13px 25px;
+  color:#f2f7f6;
+  background:linear-gradient(135deg,rgba(120,214,201,.25),rgba(142,184,216,.18));
+  cursor:pointer;
+  font-size:1rem;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.start-music:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+.music-bars{
+  height:20px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:4px;
+  margin-top:18px;
+  opacity:.65;
+}
+.music-bars span{
+  width:4px;
+  height:8px;
+  border-radius:4px;
+  background:currentColor;
+}
+.music-bars.playing span{
+  animation:bars .75s ease-in-out infinite alternate;
+}
+.music-bars span:nth-child(2){animation-delay:.12s}
+.music-bars span:nth-child(3){animation-delay:.24s}
+.music-bars span:nth-child(4){animation-delay:.36s}
+.music-bars span:nth-child(5){animation-delay:.48s}
+@keyframes bars{
+  from{height:5px}
+  to{height:20px}
+}
+
+</style>
+</head>
+<body>
+<audio id="bgMusic" src="song_new.mp3" loop preload="auto"></audio>
+
+<div class="music-overlay" id="musicOverlay">
+  <div class="music-card">
+    <div class="music-note">♫</div>
+    <h3>Before you continue...</h3>
+    <p>I put a little music behind these words.<br>Tap below and listen while you read my apology, Isha.</p>
+    <button class="start-music" id="startMusic">Play &amp; Continue ✨</button>
+    <div class="music-bars" id="musicBars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+<div id="progress"></div>
+<div class="noise"></div>
+<div id="particles"></div>
+<div class="aurora aurora-one"></div>
+<div class="aurora aurora-two"></div>
+<div class="stars"></div>
+<button id="musicBtn" class="music" aria-label="Play music" title="Play music">♪</button>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow reveal">A little something I needed to say</div>
+    <h1 class="reveal">Isha, I'm <span class="accent">sorry.</span></h1>
+    <p class="reveal">
+      Isha, I could have just sent you a message.<br>
+      But somehow, a simple “sorry” didn't feel enough.
+    </p>
+    <button class="btn reveal" onclick="goTo('truth')">Let me explain ↓</button>
+    <div class="scroll reveal">SCROLL SLOWLY<span>⌄</span></div>
+  </div>
+</section>
+
+<section id="truth">
+  <div class="container">
+    <div class="eyebrow reveal">First things first</div>
+    <h2 class="reveal">I know I <span class="accent">messed up.</span></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:650px;margin:auto">
+      I'm not here to make excuses, change the story, or explain why my mistake
+      should somehow be okay. It wasn't. I made a mistake, and I understand
+      that it may have hurt you.
+    </p>
+
+    <div class="card-grid">
+      <div class="card reveal" onclick="this.classList.toggle('open')">
+        <div class="icon">🚫</div><h3>No excuses.</h3>
+        <p>Click me.</p>
+        <div class="secret">Whatever the reason was, it doesn't erase the effect my actions had.</div>
+      </div>
+      <div class="card reveal" onclick="this.classList.toggle('open')">
+        <div class="icon">🤍</div><h3>No pressure.</h3>
+        <p>Click me.</p>
+        <div class="secret">You don't have to forgive me just because I said sorry.</div>
+      </div>
+      <div class="card reveal" onclick="this.classList.toggle('open')">
+        <div class="icon">🌱</div><h3>Just change.</h3>
+        <p>Click me.</p>
+        <div class="secret">The apology matters only if my actions become better afterward.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow reveal">Not asking you to forget</div>
+    <h2 class="reveal">Can I try to <span class="accent">make it right?</span></h2>
+    <p class="reveal" style="max-width:650px;margin:25px auto">
+      A mistake can't always be undone. But I can learn from it.
+      I can listen. I can be more careful. And I can show you that
+      this apology isn't just a collection of pretty words.
+    </p>
+    <div class="light-area reveal" onclick="lightUp()">
+      <div class="halo"></div>
+      <div class="light-orb" id="lightOrb">✦</div>
+    </div>
+    <p id="heartText" class="cursive" style="font-size:1.8rem;color:#c9eeea">Tap the light.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow reveal">Something I couldn't say casually, Isha</div>
+    <h2 class="reveal">I wrote you a <span class="accent">letter.</span></h2>
+    <p class="reveal">Tap the envelope. Take your time.</p>
+
+    <div class="letter-wrap reveal">
+      <div class="envelope" id="envelope" onclick="openLetter()">
+        <div class="letter">
+          <h3>Dear Isha,</h3>
+          <p>
+            I don't know if there is a perfect way to apologize.
+            Maybe there isn't.
+          </p>
+          <br>
+          <p>
+            I know I made a mistake. And I'm genuinely sorry for it.
+            I wish I had handled things differently, thought a little more,
+            and understood how my actions could make you feel.
+          </p>
+          <br>
+          <p>
+            I'm not asking you to forget what happened, and I'm not asking
+            you to immediately say that everything is okay.
+          </p>
+          <br>
+          <p>
+            I just want you to know that I understand, I regret it,
+            and I'll do my best to make sure I don't repeat it.
+          </p>
+          <div class="sign">I'm really sorry, Isha. 🤍</div>
+        </div>
+        <div class="seal">♡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow reveal">One more thing</div>
+    <h2 class="reveal">Isha, your feelings are <span class="accent">valid.</span></h2>
+    <p class="reveal" style="max-width:680px;margin:25px auto">
+      If you're angry, hurt, disappointed, confused, or simply need some time —
+      I understand. You don't owe me an immediate response.
+    </p>
+
+    <div class="choice-box reveal">
+      <p style="color:#fff">If you could tell me one thing right now...</p>
+      <div class="choices">
+        <button class="choice" onclick="respond('I need some time. 🕊️')">I need some time</button>
+        <button class="choice" onclick="respond('Let’s talk about it. 💬')">Let's talk</button>
+        <button class="choice" onclick="respond('I’m still upset. 😔')">I'm still upset</button>
+        <button class="choice" onclick="respond('Okay... I hear you. 🤍')">I hear you</button>
+      </div>
+      <div id="response"></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="container">
+    <div class="eyebrow reveal">So, before you leave...</div>
+    <h2 class="reveal">I'm not asking for a <span class="accent">perfect ending.</span></h2>
+    <p class="reveal">
+      I'm just hoping this little corner of the internet can carry one honest
+      message to you:
+    </p>
+    <div class="reveal" style="margin-top:35px">
+      <div class="cursive" style="font-size:clamp(2.5rem,7vw,5rem);color:#fff">
+        I'm sorry, Isha.
+      </div>
+      <div class="signature">And I truly mean it, Isha. 🤍</div>
+    </div>
+    <div class="final-choice reveal">
+      <div class="final-please" id="finalPlease">Isha... please forgive me? 🥺</div>
+      <div class="final-buttons" id="finalButtons">
+        <button class="final-btn yes" id="finalYes" onclick="finalChoice('yes')">It's all okay ✨</button>
+        <button class="final-btn no" id="finalNo" onclick="finalChoice('no')">No, still angry 😤</button>
+      </div>
+      <div class="final-response" id="finalResponse"></div>
+      <div class="final-success" id="finalSuccess">
+        <div class="cursive" style="font-size:2.8rem;color:#fff">Thank you, Isha. ❤️</div>
+        <div class="signature">I'll do better. I promise.</div>
+      </div>
+    </div>
+    <button class="btn ghost reveal" style="margin-top:35px" onclick="restart()">Read it again ↻</button>
+  </div>
+</section>
+</main>
+
+<footer>Made with honesty, not excuses. 🤍</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  $('#progress').style.width=pct+'%';
+});
+
+function openLetter(){
+  $('#envelope').classList.toggle('open');
+}
+
+function lightUp(){
+  const orb=$('#lightOrb');
+  if(orb.classList.contains('fixed')) return;
+  orb.classList.add('fixed');
+  orb.textContent='✧';
+  $('#heartText').textContent='Sometimes the first step is simply being honest. — Isha, this is my honest apology.';
+  burst(orb);
+}
+
+function finalChoice(answer){
+  const no=document.getElementById('finalNo');
+  const yes=document.getElementById('finalYes');
+  const please=document.getElementById('finalPlease');
+  const response=document.getElementById('finalResponse');
+  const success=document.getElementById('finalSuccess');
+
+  if(answer==='yes'){
+    please.textContent='Wait... really? 🥹❤️';
+    response.textContent='You have no idea how happy that makes me.';
+    no.style.display='none';
+    yes.textContent='Thank you, Isha ❤️';
+    yes.disabled=true;
+    success.classList.add('show');
+    burst(yes);
+    return;
+  }
+
+  const pleaseTexts=[
+    'Pleaseeee, Isha 🥺',
+    'Okay... but please forgive me? 😭',
+    'I know you’re angry... please 🥹',
+    'One tiny chance? Please? 🙏',
+    'I really mean it. Please forgive me 😔',
+    'Still angry? Fair... but pleaseee 🥺',
+    'I’m not giving up yet. Please? 😭❤️'
+  ];
+  const noTexts=['No 😤','Still angry 😠','Nope 🙄','Not yet 😤','Hmm... NO 😑','I’m still mad 😭','Ask again 🥺'];
+  const moves=[[-105,0], [100,12], [-55,42], [65,-40], [0,48], [0,-42]];
+  const move=moves[Math.floor(Math.random()*moves.length)];
+
+  please.textContent=pleaseTexts[Math.floor(Math.random()*pleaseTexts.length)];
+  response.textContent='Okay okay... I’ll ask again. 🥺';
+  please.animate([{transform:'scale(1)'},{transform:'scale(1.13)'},{transform:'scale(1)'}],{duration:650});
+
+  no.classList.remove('shake');
+  void no.offsetWidth;
+  no.classList.add('shake');
+  no.style.transform=`translate(${move[0]}px,${move[1]}px) rotate(${(Math.random()*8-4).toFixed(1)}deg)`;
+  no.textContent=noTexts[Math.floor(Math.random()*noTexts.length)];
+
+  if(Math.random()>.5) yes.textContent=['Okay, forgive me? ✨','Give me a chance? 🥺','Let’s be okay ❤️'][Math.floor(Math.random()*3)];
+  burst(no);
+}
+
+function respond(text){
+  $('#response').textContent=text;
+  $('#response').animate(
+    [{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],
+    {duration:450,fill:'forwards'}
+  );
+}
+
+function burst(el){
+  const r=el.getBoundingClientRect();
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');
+    s.textContent=['✦','·','○','—'][Math.floor(Math.random()*4)];
+    s.style.position='fixed';
+    s.style.left=(r.left+r.width/2)+'px';
+    s.style.top=(r.top+r.height/2)+'px';
+    s.style.zIndex=200;
+    s.style.pointerEvents='none';
+    s.style.fontSize=(12+Math.random()*20)+'px';
+    document.body.appendChild(s);
+    const x=(Math.random()-.5)*260, y=(Math.random()-.5)*220;
+    s.animate(
+      [{transform:'translate(-50%,-50%) scale(.4)',opacity:1},
+       {transform:`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(1.2)`,opacity:0}],
+      {duration:900+Math.random()*500,easing:'cubic-bezier(.2,.8,.2,1)'}
+    ).onfinish=()=>s.remove();
+  }
+}
+
+function spawnParticle(){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.textContent=['·','✦','○','—'][Math.floor(Math.random()*4)];
+  p.style.left=Math.random()*100+'vw';
+  p.style.fontSize=(10+Math.random()*18)+'px';
+  p.style.animationDuration=(8+Math.random()*10)+'s';
+  p.style.animationDelay=Math.random()*2+'s';
+  $('#particles').appendChild(p);
+  setTimeout(()=>p.remove(),20000);
+}
+setInterval(spawnParticle,650);
+
+
+function startAmbient(){
+  if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const master=audioCtx.createGain(); master.gain.value=.018; master.connect(audioCtx.destination);
+  const osc=audioCtx.createOscillator(); osc.type='sine'; osc.frequency.value=196; osc.connect(master); osc.start();
+  const osc2=audioCtx.createOscillator(); osc2.type='sine'; osc2.frequency.value=293.66; osc2.connect(master); osc2.start();
+  timer=setInterval(()=>{
+    osc.frequency.setTargetAtTime(180+Math.random()*45,audioCtx.currentTime,.8);
+    osc2.frequency.setTargetAtTime(270+Math.random()*50,audioCtx.currentTime,.8);
+  },1800);
+  window._ambient={master,osc,osc2};
+}
+function stopAmbient(){
+  clearInterval(timer);
+  if(window._ambient){
+    window._ambient.master.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.5);
+    setTimeout(()=>{
+      try{window._ambient.osc.stop();window._ambient.osc2.stop()}catch(e){}
+    },600);
+  }
+}
+function restart(){location.reload()}
+
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*10;
+  const y=(e.clientY/window.innerHeight-.5)*10;
+  document.querySelectorAll('.hero .reveal').forEach((el,i)=>{
+    el.style.transform=`translate(${x*(i+1)*.15}px,${y*(i+1)*.15}px)`;
+  });
+});
+
+/* Real MP3 music player */
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const musicOverlay = document.getElementById('musicOverlay');
+const startMusic = document.getElementById('startMusic');
+const musicBars = document.getElementById('musicBars');
+
+let musicOn = false;
+let fadeTimer = null;
+
+function fadeMusicIn(){
+  clearInterval(fadeTimer);
+  bgMusic.volume = 0;
+  fadeTimer = setInterval(() => {
+    bgMusic.volume = Math.min(1, bgMusic.volume + 0.05);
+    if(bgMusic.volume >= 1) clearInterval(fadeTimer);
+  }, 100);
+}
+
+async function startMusicPlayback(){
+  try{
+    // Primary location for the current project:
+    // sorry/main.html -> ../song.mp3
+    if(!bgMusic.src){
+      bgMusic.src = '../song.mp3';
+    }
+
+    await bgMusic.play();
+    fadeMusicIn();
+
+    musicOn = true;
+    musicBtn.textContent = '♫';
+    musicBtn.classList.add('playing');
+    musicBtn.setAttribute('aria-label','Pause music');
+    musicBtn.title = 'Pause music';
+    musicBars.classList.add('playing');
+
+    if(musicOverlay) musicOverlay.classList.add('hidden');
+    return true;
+  }catch(error){
+    console.error('Music could not be played:', error);
+    if(musicOverlay){
+      const p = musicOverlay.querySelector('.music-card p');
+      if(p) p.innerHTML =
+        'I could not start <b>song.mp3</b>.<br>' +
+        'Make sure <b>song.mp3</b> is in the main project folder.';
+    }
+    return false;
+  }
+}
+
+function stopMusicPlayback(){
+  clearInterval(fadeTimer);
+
+  const fadeOut = setInterval(() => {
+    bgMusic.volume = Math.max(0, bgMusic.volume - 0.08);
+
+    if(bgMusic.volume <= 0){
+      clearInterval(fadeOut);
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+    }
+  }, 50);
+
+  musicOn = false;
+  musicBtn.textContent = '♪';
+  musicBtn.classList.remove('playing');
+  musicBtn.setAttribute('aria-label','Play music');
+  musicBtn.title = 'Play music';
+  musicBars.classList.remove('playing');
+}
+
+if(startMusic){
+  startMusic.addEventListener('click', startMusicPlayback);
+}
+
+if(musicBtn){
+  musicBtn.addEventListener('click', async () => {
+    if(musicOn){
+      stopMusicPlayback();
+    }else{
+      await startMusicPlayback();
+    }
+  });
+}
+
+// If the browser stops the track, keep the UI accurate.
+bgMusic.addEventListener('pause', () => {
+  if(bgMusic.ended) return;
+  musicOn = false;
+  musicBtn.classList.remove('playing');
+  musicBars.classList.remove('playing');
+  musicBtn.textContent = '♪';
+});
+
+bgMusic.addEventListener('play', () => {
+  musicOn = true;
+  musicBtn.classList.add('playing');
+  musicBars.classList.add('playing');
+  musicBtn.textContent = '♫';
+});
+
+</script>
+</body>
+</html>
